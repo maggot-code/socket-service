@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "dev": "vite --host",
-        "server": "node ./server/app.js"
+        "server": "node ./server/app.express.js"
     },
     "repository": {
         "type": "git",
