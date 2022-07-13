@@ -33,3 +33,12 @@ lerna-debug.log*
 *.sql
 *.local
 *.zip
+
+# egg
+coverage/
+logs/
+.idea/
+.vscode/
+run/
+.DS_Store
+*.swp

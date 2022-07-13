@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-07-13 10:03:42
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-07-13 16:00:13
+ * @LastEditTime: 2022-07-13 16:08:30
  * @Description: 
 -->
 <script setup>
@@ -15,15 +15,15 @@ import {
     ref
 } from "vue";
 
-// const socket = io("http://10.1.1.217:9099", {
-//     query: {
-//         username: "maggot-code"
-//     },
-//     transports: ["websocket"]
-// });
-const socket = io("http://localhost:8000", {
+const socket = io("http://10.1.1.217:9099", {
+    query: {
+        username: "maggot-code"
+    },
     transports: ["websocket"]
 });
+// const socket = io("http://localhost:8000", {
+//     transports: ["websocket"]
+// });
 
 const inputValue = ref("");
 const message = ref("");
