@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-07-13 10:11:09
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-07-13 11:18:20
+ * @LastEditTime: 2022-07-13 16:05:16
  * @Description:
  */
 const app = require('express')();
@@ -16,9 +16,12 @@ io.on('connection', (socket) => {
 
     socket.on('message', (msg) => {
         console.log(msg);
-        io.emit('message', msg);
     });
 });
+
+setInterval(() => {
+    io.emit('message', { type: 'rain', time: Date.now() });
+}, 2000);
 
 http.listen(port, () => {
     console.log(`listening on *:${port}`);

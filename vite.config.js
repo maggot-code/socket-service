@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-07-13 10:08:29
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-07-13 14:44:43
+ * @LastEditTime: 2022-07-13 15:01:45
  * @Description:
  */
 import { defineConfig } from 'vite';
@@ -16,7 +16,7 @@ export default defineConfig({
         proxy: {
             // /shiro/tzym
             // '/shiro': {
-            //     target: 'http://10.1.1.217:9099',
+            //     target: 'ws://10.1.1.217',
             //     changeOrigin: true,
             //     ws: true,
             //     rewrite: (path) => path.replace(/^\/shiro/, ''),
