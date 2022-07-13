@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-07-13 10:03:42
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-07-13 16:08:30
+ * @LastEditTime: 2022-07-13 17:23:56
  * @Description: 
 -->
 <script setup>
@@ -15,9 +15,9 @@ import {
     ref
 } from "vue";
 
-const socket = io("http://10.1.1.217:9099", {
+const socket = io("ws://10.1.1.217:9099", {
     query: {
-        username: "maggot-code"
+        token: "maggot-code"
     },
     transports: ["websocket"]
 });
@@ -32,8 +32,8 @@ function sendMessage() {
     inputValue.value = "";
 }
 
-socket.on("message", (msg) => {
-    console.log('message', msg);
+socket.on("send_channel", (msg) => {
+    console.log('send_channel', msg);
 });
 
 // 连接成功
@@ -44,6 +44,7 @@ socket.on("connect", () => {
 // 连接失败
 socket.on("disconnect", (reason) => {
     console.log('disconnected', reason);
+    socket.disconnect();
 });
 
 // 服务异常
