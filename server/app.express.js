@@ -1,9 +1,9 @@
 /*
- * @FilePath: \socket-service\server\app.js
+ * @FilePath: \socket-service\server\app.express.js
  * @Author: maggot-code
  * @Date: 2022-07-13 10:11:09
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-07-13 16:05:16
+ * @LastEditTime: 2022-07-13 17:28:34
  * @Description:
  */
 const app = require('express')();
@@ -18,10 +18,6 @@ io.on('connection', (socket) => {
         console.log(msg);
     });
 });
-
-setInterval(() => {
-    io.emit('message', { type: 'rain', time: Date.now() });
-}, 2000);
 
 http.listen(port, () => {
     console.log(`listening on *:${port}`);
