@@ -1,30 +1,39 @@
 /*
  * @FilePath: \socket-service\src\entity\Service.js
  * @Author: maggot-code
- * @Date: 2022-07-13 17:47:41
+ * @Date: 2022-07-14 11:08:45
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-07-13 17:57:10
+ * @LastEditTime: 2022-07-14 11:28:29
  * @Description:
  */
 export const serviceURI = window.location.origin;
 
 export const servicePath = '/socket.io/';
 
-export const serviceRetry = 5;
-
-export const setupQuery = () => {
+export const serviceQuery = () => {
     return {};
 };
 
 export const Service = {
-    url: serviceURI,
     path: servicePath,
-    reconnectionAttempts: serviceRetry,
-    query: setupQuery(),
-    reconnectionDelay: 1024,
-    timeout: 20000,
-    autoConnect: true,
+    setupQuery: serviceQuery,
+    autoConnect: false,
+    reconnection: true,
+    reconnectionAttempts: 5,
     transports: ['websocket'],
 };
 
-export default Service;
+export function setupService(props = {}) {
+    const { url } = props ?? {};
+    const serviceProps = Object.assign({}, props ?? {}, Service);
+
+    return {
+        url: url ?? serviceURI,
+        options: {
+            query: serviceProps.setupQuery(),
+            ...serviceProps,
+        },
+    };
+}
+
+export default setupService;
