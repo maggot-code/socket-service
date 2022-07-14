@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-07-13 10:11:09
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-07-14 14:04:18
+ * @LastEditTime: 2022-07-14 14:56:06
  * @Description:
  */
 const app = require('express')();
@@ -24,26 +24,26 @@ io.on('connection', (socket) => {
 
 let index = 0;
 
-const typeList = ['rain', 'prediction', 'reservoir'];
+const typeList = ['prediction', 'realtime', 'radar'];
 
 setInterval(() => {
     index++;
     const rand = Math.floor(Math.random() * typeList.length);
     clients.forEach((socket) => {
         socket.emit('message', {
-            index,
+            props: { index },
             type: typeList[rand],
         });
     });
-}, 3000);
+}, 6000);
 
-setInterval(() => {
-    clients.forEach((socket, id) => {
-        socket.disconnect(true);
-        clients['delete'](id);
-    });
-    console.log(clients.size);
-}, 12000);
+// setInterval(() => {
+//     clients.forEach((socket, id) => {
+//         socket.disconnect(true);
+//         clients['delete'](id);
+//     });
+//     console.log(clients.size);
+// }, 12000);
 
 http.listen(port, () => {
     console.log(`listening on *:${port}`);
